@@ -1,60 +1,34 @@
 package com.lcb.ljs.contract;
 
 
-import com.lcb.ljs.base.BaseView;
-import com.lcb.ljs.bean.BannerData;
-import com.lcb.ljs.bean.BaseObjectBean;
-import com.lcb.ljs.bean.LoginBean;
+import com.lcb.ljs.base.presenter.AbstractPresenter;
+import com.lcb.ljs.base.view.AbstractView;
 
-import io.reactivex.Flowable;
 
+/**
+ * @author lcb
+ */
 public interface MainContract {
-    interface Model {
-        /**
-         * 登陆
-         *
-         * @param username 用户名
-         * @param password 密码
-         * @return 登录数据
-         */
-        Flowable<BaseObjectBean<LoginBean>> login(String username, String password);
 
 
+    interface View extends AbstractView {
+
         /**
-         * 获取Banner数据
+         * Show banner data
          *
-         * @return Banner数据
+         * @param bannerDataList List<BannerData>
          */
-        Flowable<BannerData> getBanner();
+//        void showBannerData(List<BannerData> bannerDataList);
     }
 
-    interface View extends BaseView {
-        @Override
-        void showLoading();
-
-        @Override
-        void hideLoading();
-
-        @Override
-        void onError(Throwable throwable);
-
-        void onSuccess(BaseObjectBean<LoginBean> bean);
-
-        void onBannerSuccess(BannerData bean);
-    }
-
-    interface Presenter {
+    interface Presenter extends AbstractPresenter<View> {
         /**
-         * 登陆
+         * Get banner data
          *
-         * @param username 用户名
-         * @param password 密码
+         * @param isShowError If show error
          */
-        void login(String username, String password);
-
-        /**
-         * 获取Banner数据
-         */
-        void getBanner();
+        void getBannerData(boolean isShowError);
     }
+
+
 }

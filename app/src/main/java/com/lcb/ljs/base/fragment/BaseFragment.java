@@ -1,4 +1,4 @@
-package com.lcb.ljs.base;
+package com.lcb.ljs.base.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
+/**
+ * @author lcb
+ */
 public abstract class BaseFragment extends Fragment {
 
     private Unbinder unBinder;

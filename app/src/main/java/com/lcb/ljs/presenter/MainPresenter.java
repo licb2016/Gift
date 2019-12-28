@@ -1,14 +1,17 @@
 package com.lcb.ljs.presenter;
 
-import com.lcb.ljs.base.BasePresenter;
+import com.lcb.ljs.R;
+import com.lcb.ljs.app.MyApplication;
+import com.lcb.ljs.base.presenter.BasePresenter;
 import com.lcb.ljs.bean.BannerData;
-import com.lcb.ljs.bean.BaseObjectBean;
-import com.lcb.ljs.bean.LoginBean;
 import com.lcb.ljs.contract.MainContract;
-import com.lcb.ljs.model.MainModel;
-import com.lcb.ljs.net.RxScheduler;
+import com.lcb.ljs.core.DataManager;
+import com.lcb.ljs.ui.widget.BaseObserver;
+import com.lcb.ljs.util.RxUtils;
 
-import io.reactivex.functions.Consumer;
+import java.util.List;
+
+import javax.inject.Inject;
 
 
 /**
@@ -16,62 +19,29 @@ import io.reactivex.functions.Consumer;
  */
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
-    private MainContract.Model model;
+    private DataManager mDataManager;
 
-    public MainPresenter() {
-        model = new MainModel();
+    @Inject
+    MainPresenter(DataManager dataManager) {
+        super(dataManager);
+        this.mDataManager = dataManager;
     }
 
     @Override
-    public void login(String username, String password) {
-
-        //View是否绑定 如果没有绑定，就不执行网络请求
-        if (!isViewAttached()) {
-            return;
-        }
-        mView.showLoading();
-        model.login(username, password)
-                .compose(RxScheduler.Flo_io_main())
-                .as(mView.bindAutoDispose())
-                .subscribe(new Consumer<BaseObjectBean<LoginBean>>() {
+    public void getBannerData(boolean isShowError) {
+        addSubscribe(mDataManager.getBannerData()
+                .compose(RxUtils.rxSchedulerHelper())
+                .compose(RxUtils.handleResult())
+                .subscribeWith(new BaseObserver<List<BannerData>>(mView,
+                        MyApplication.getInstance().getString(R.string.failed_to_obtain_banner_data),
+                        isShowError) {
                     @Override
-                    public void accept(BaseObjectBean<LoginBean> bean) throws Exception {
-                        mView.onSuccess(bean);
-                        mView.hideLoading();
+                    public void onNext(List<BannerData> bannerDataList) {
+//                        mView.showBannerData(bannerDataList);
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.onError(throwable);
-                        mView.hideLoading();
-                    }
-                });
+                }));
     }
 
-    @Override
-    public void getBanner() {
-        //View是否绑定 如果没有绑定，就不执行网络请求
-        if (!isViewAttached()) {
-            return;
-        }
-        mView.showLoading();
-        model.getBanner()
-                .compose(RxScheduler.Flo_io_main())
-                .as(mView.bindAutoDispose())
-                .subscribe(new Consumer<BannerData>() {
-                    @Override
-                    public void accept(BannerData bean) throws Exception {
-                        mView.onBannerSuccess(bean);
-                        mView.hideLoading();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        mView.onError(throwable);
-                        mView.hideLoading();
-                    }
-                });
-    }
 
 
 }

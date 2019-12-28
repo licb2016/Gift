@@ -1,6 +1,5 @@
 package com.lcb.ljs.bean;
 
-import java.util.List;
 
 /**
  * @author lcb
@@ -8,136 +7,76 @@ import java.util.List;
  */
 public class BannerData {
 
-    /**
-     * data : [{"desc":"享学~","id":29,"imagePath":"https://www.wanandroid.com/blogimgs/3dc1e641-8397-43ad-b1c8-269817bfc407.png","isVisible":1,"order":0,"title":"高级ui有多重要？","type":0,"url":"https://mp.weixin.qq.com/s/asVSGjUpCNkaZZFJOXibng"},{"desc":"","id":6,"imagePath":"https://www.wanandroid.com/blogimgs/62c1bd68-b5f3-4a3c-a649-7ca8c7dfabe6.png","isVisible":1,"order":1,"title":"我们新增了一个常用导航Tab~","type":1,"url":"https://www.wanandroid.com/navi"},{"desc":"一起来做个App吧","id":10,"imagePath":"https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png","isVisible":1,"order":1,"title":"一起来做个App吧","type":1,"url":"https://www.wanandroid.com/blog/show/2"},{"desc":"","id":20,"imagePath":"https://www.wanandroid.com/blogimgs/90c6cc12-742e-4c9f-b318-b912f163b8d0.png","isVisible":1,"order":2,"title":"flutter 中文社区 ","type":1,"url":"https://flutter.cn/"}]
-     * errorCode : 0
-     * errorMsg :
-     */
-    private int errorCode;
-    private String errorMsg;
-    private List<DataBean> data;
+    private int id;
+    private String url;
+    private String imagePath;
+    private String title;
+    private String desc;
+    private int isVisible;
+    private int order;
+    private int type;
 
-    public int getErrorCode() {
-        return errorCode;
+    public int getId() {
+        return id;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public String getUrl() {
+        return url;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public List<DataBean> getData() {
-        return data;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setData(List<DataBean> data) {
-        this.data = data;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
-    public static class DataBean {
-        /**
-         * desc : 享学~
-         * id : 29
-         * imagePath : https://www.wanandroid.com/blogimgs/3dc1e641-8397-43ad-b1c8-269817bfc407.png
-         * isVisible : 1
-         * order : 0
-         * title : 高级ui有多重要？
-         * type : 0
-         * url : https://mp.weixin.qq.com/s/asVSGjUpCNkaZZFJOXibng
-         */
+    public String getTitle() {
+        return title;
+    }
 
-        private String desc;
-        private int id;
-        private String imagePath;
-        private int isVisible;
-        private int order;
-        private String title;
-        private int type;
-        private String url;
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        public String getDesc() {
-            return desc;
-        }
+    public String getDesc() {
+        return desc;
+    }
 
-        public void setDesc(String desc) {
-            this.desc = desc;
-        }
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public int getIsVisible() {
+        return isVisible;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public void setIsVisible(int isVisible) {
+        this.isVisible = isVisible;
+    }
 
-        public String getImagePath() {
-            return imagePath;
-        }
+    public int getOrder() {
+        return order;
+    }
 
-        public void setImagePath(String imagePath) {
-            this.imagePath = imagePath;
-        }
+    public void setOrder(int order) {
+        this.order = order;
+    }
 
-        public int getIsVisible() {
-            return isVisible;
-        }
+    public int getType() {
+        return type;
+    }
 
-        public void setIsVisible(int isVisible) {
-            this.isVisible = isVisible;
-        }
-
-        public int getOrder() {
-            return order;
-        }
-
-        public void setOrder(int order) {
-            this.order = order;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public int getType() {
-            return type;
-        }
-
-        public void setType(int type) {
-            this.type = type;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "desc='" + desc + '\'' +
-                    ", id=" + id +
-                    ", imagePath='" + imagePath + '\'' +
-                    ", isVisible=" + isVisible +
-                    ", order=" + order +
-                    ", title='" + title + '\'' +
-                    ", type=" + type +
-                    ", url='" + url + '\'' +
-                    '}';
-        }
+    public void setType(int type) {
+        this.type = type;
     }
 }

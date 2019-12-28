@@ -1,9 +1,14 @@
-package com.lcb.ljs.base;
+package com.lcb.ljs.base.view;
 
 
 import com.uber.autodispose.AutoDisposeConverter;
 
 
+/**
+ * View 基类
+ *
+ * @author lcb
+ */
 public interface BaseView {
 
     /**
@@ -18,6 +23,7 @@ public interface BaseView {
 
     /**
      * 数据获取失败
+     *
      * @param throwable
      */
     void onError(Throwable throwable);
