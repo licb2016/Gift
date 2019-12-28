@@ -10,6 +10,7 @@ import com.lcb.ljs.R;
 import com.lcb.ljs.core.dao.DaoMaster;
 import com.lcb.ljs.core.dao.DaoSession;
 import com.lcb.ljs.di.component.AppComponent;
+import com.lcb.ljs.di.component.DaggerAppComponent;
 import com.lcb.ljs.di.module.AppModule;
 import com.lcb.ljs.di.module.HttpModule;
 import com.lcb.ljs.util.logger.TxtFormatStrategy;
