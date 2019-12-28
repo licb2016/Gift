@@ -11,6 +11,8 @@ import java.io.File;
 public class Constants {
 
 
+    static final String DB_NAME = "ljs.db";
+
     /**
      * Path
      */
@@ -62,4 +64,5 @@ public class Constants {
 
     public static final String NIGHT_MODE_STATE = "night_mode_state";
 
+    public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 }

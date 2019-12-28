@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -54,6 +56,11 @@ android {
     }
 }
 
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage 'com.lcb.ljs.core.dao'
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -86,6 +93,8 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["glide_compiler"]
     implementation rootProject.ext.dependencies["retrofit-url-manager"]
 
+    //dao
+    implementation rootProject.ext.dependencies["greendao"]
 
     /** RxJava */
     implementation rootProject.ext.dependencies["rxjava"]

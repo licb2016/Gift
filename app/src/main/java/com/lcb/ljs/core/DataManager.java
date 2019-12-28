@@ -3,25 +3,28 @@ package com.lcb.ljs.core;
 import com.lcb.ljs.bean.BannerData;
 import com.lcb.ljs.bean.BaseResponse;
 import com.lcb.ljs.bean.LoginBean;
+import com.lcb.ljs.core.dao.HistoryData;
+import com.lcb.ljs.core.db.DbHelper;
 import com.lcb.ljs.core.http.HttpHelper;
 import com.lcb.ljs.core.prefs.PreferenceHelper;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import retrofit2.http.HTTP;
 
 /**
  * @author lcb
  * @date 2019-12-27 17:02
  */
-public class DataManager implements HttpHelper, PreferenceHelper {
+public class DataManager implements DbHelper, HttpHelper, PreferenceHelper {
 
     private HttpHelper mHttpHelper;
     private PreferenceHelper mPreferenceHelper;
+    private DbHelper mDbHelper;
 
-    public DataManager(HttpHelper mHttpHelper, PreferenceHelper mPreferenceHelper) {
+    public DataManager(HttpHelper mHttpHelper, DbHelper mDbHelper, PreferenceHelper mPreferenceHelper ) {
         this.mHttpHelper = mHttpHelper;
+        this.mDbHelper = mDbHelper;
         this.mPreferenceHelper = mPreferenceHelper;
     }
 
@@ -85,4 +88,20 @@ public class DataManager implements HttpHelper, PreferenceHelper {
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mHttpHelper.getBannerData();
     }
+
+    @Override
+    public List<HistoryData> addHistoryData(String data) {
+        return mDbHelper.addHistoryData(data);
+    }
+
+    @Override
+    public void clearHistoryData() {
+        mDbHelper.clearHistoryData();
+    }
+
+    @Override
+    public List<HistoryData> loadAllHistoryData() {
+        return mDbHelper.loadAllHistoryData();
+    }
+
 }
