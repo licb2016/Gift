@@ -106,6 +106,17 @@ public class MyApplication extends Application implements HasActivityInjector {
     }
 
 
+    public static synchronized AppComponent getAppComponent() {
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(instance))
+                    .httpModule(new HttpModule())
+                    .build();
+        }
+        return appComponent;
+    }
+
+
     @Override
     public AndroidInjector<Activity> activityInjector() {
         return mAndroidInjector;
